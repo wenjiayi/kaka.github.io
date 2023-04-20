@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wenjiayi.github.io/kaka.github.io">
-  <title>sql注入 | Hexo</title>
+  <title>Archives: 2023/1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录sqli-labssql注入点判断1.?id&#x3D;1 and 1&#x3D;1 和?id&#x3D;1 and 1&#x3D;2进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为数字型注入。 2.?id&#x3D;1’ and 1&#x3D;1–+&#x2F;#和?id&#x3D;1’ and 1&#x3D;2">
-<meta property="og:type" content="article">
-<meta property="og:title" content="sql注入">
-<meta property="og:url" content="https://wenjiayi.github.io/kaka.github.io/2023/04/20/sql%E6%B3%A8%E5%85%A5/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://wenjiayi.github.io/kaka.github.io/archives/2023/01/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="记录sqli-labssql注入点判断1.?id&#x3D;1 and 1&#x3D;1 和?id&#x3D;1 and 1&#x3D;2进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为数字型注入。 2.?id&#x3D;1’ and 1&#x3D;1–+&#x2F;#和?id&#x3D;1’ and 1&#x3D;2">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-20T04:06:43.000Z">
-<meta property="article:modified_time" content="2023-04-20T08:06:47.800Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -154,175 +150,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sql注入" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      sql注入
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/kaka.github.io/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/kaka.github.io/2023/01/05/sql%E6%B3%A8%E5%85%A5/" class="archive-article-date">
+  	<time datetime="2023-01-05T04:06:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/kaka.github.io/2023/01/05/sql%E6%B3%A8%E5%85%A5/">sql注入</a>
     </h1>
   
 
-        
-        <a href="/kaka.github.io/2023/04/20/sql%E6%B3%A8%E5%85%A5/" class="archive-article-date">
-  	<time datetime="2023-04-20T04:06:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="记录sqli-labs"><a href="#记录sqli-labs" class="headerlink" title="记录sqli-labs"></a>记录sqli-labs</h1><h2 id="sql注入点判断"><a href="#sql注入点判断" class="headerlink" title="sql注入点判断"></a>sql注入点判断</h2><p>1.?id&#x3D;1 and 1&#x3D;1 和?id&#x3D;1 and 1&#x3D;2进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为数字型注入。</p>
-<p>2.?id&#x3D;1’ and 1&#x3D;1–+&#x2F;#和?id&#x3D;1’ and 1&#x3D;2–+&#x2F;#进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为字符型注入。</p>
-<p>3.?id&#x3D;1’and 1&#x3D;1 and ‘1’&#x3D;’1和?id&#x3D;1’and 1&#x3D;1 and ‘1’&#x3D;’1进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为字符型注入。</p>
-<p>4.?id&#x3D;1%’ and 1&#x3D;1 and ‘%’&#x3D;’%和?id&#x3D;1%’ and 1&#x3D;2 and ‘%’&#x3D;’%进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为搜索型注入。</p>
-<p>5.?id&#x3D;1%’ and 1&#x3D;1–+&#x2F;#和?id&#x3D;1%’ and 1&#x3D;2–+&#x2F;#进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为搜索型注入。</p>
-<h2 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h2><h3 id="1-1判断是否存在sql注入"><a href="#1-1判断是否存在sql注入" class="headerlink" title="1.1判断是否存在sql注入"></a>1.1判断是否存在sql注入</h3><p>1.提示输入数字值的ID作为参数，输入?id&#x3D;1</p>
-<p>2.通过数字值不同返回的内容也不同，所以我们输入的内容是带入到数据库里面查询了。</p>
-<p>3.接下来我们判断sql语句是否是拼接，且是字符型还是数字型。</p>
-<p>4.可以根据结果指定是字符型且存在sql注入漏洞。因为该页面存在回显，所以可以使用联合查询。联合查询原理:联合查询就是两个sql语句一起查询，两张表具有相同的列数，且字段名是一样的。</p>
-<h3 id="2-2-联合注入"><a href="#2-2-联合注入" class="headerlink" title="2.2 联合注入"></a>2.2 联合注入</h3><p>1.首先知道表格有几列，如果报错就是超过列数，如果显示正常就是没有超出列数。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=1<span class="string">&#x27;order by 3 --+</span></span><br></pre></td></tr></table></figure>
-<p>2.爆出显示位，看看表格里面那一列是在页面显示的。可以看到是第二列和第三列里面的数据是显示在页面的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27;union select 1,2,3--+</span></span><br></pre></td></tr></table></figure>
-<p>3.获取当前数据名和版本号</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27;union select 1,database(),version()--+</span></span><br></pre></td></tr></table></figure>
-<p>4.爆表，information_schema.tables表示该数据库下的tables表，点表示下一级。where后面是条件，group_concat()是将查询到结果连接起来。如果不用group_concat查询到的只有user。该语句的意思是查询information_schema数据库下的tables表里面且table_schema字段内容是security的所有table_name的内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27;union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27;--+</span></span><br></pre></td></tr></table></figure>
-<p>5.爆字段名，我们通过sql语句查询知道当前数据库有四个表，根据表名知道可能用户的账户和密码是在users表中。接下来我们就是得到该表下的字段名以及内容。<br>该语句的意思是查询information_schema数据库下的columns表里面且table_users字段内容是users的所有column_name的内。（table_name字段不是只存在于tables表，也是存在columns表中。表示所有字段对应的表名。）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27;union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;</span><span class="built_in">users</span><span class="string">&#x27;--+</span></span><br></pre></td></tr></table></figure>
-<p>6.通过上述操作可以得到两个敏感字段就是username和password,接下来我们就要得到该字段对应的内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27; union select 1,2,group_concat(username ,id , password) from users--+</span></span><br></pre></td></tr></table></figure>
-      
+        <div class="article-info info-on-right">
+          
+          
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://wenjiayi.github.io/kaka.github.io/2023/04/20/sql%E6%B3%A8%E5%85%A5/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/kaka.github.io/2022/09/21/%E5%8F%91%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">发博客</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -345,8 +215,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
